@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "tailwindcss";
 
+/* stylelint-disable-next-line at-rule-no-unknown */
 @theme {
   --color-ink: #1a1a1c;
   --color-ink-muted: #1a1b1c83;
