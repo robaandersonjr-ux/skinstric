@@ -1,1 +1,9 @@
 @import "tailwindcss";
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1a1a1c;
+  --color-ink-muted: #1a1b1c83;
+  --color-ink-inverse: #fcfcfc;
+  --color-rule: #a0a4ab;
+}
