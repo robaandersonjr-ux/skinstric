@@ -10,11 +10,7 @@ export const metadata: Metadata = {
   description: "Your AI Skin Analysis",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased text-ink`}>
