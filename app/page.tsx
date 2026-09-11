@@ -37,15 +37,16 @@ export default function Home() {
       </div>
 
       {/* DESKTOP: right diamond + TAKE TEST */}
-      <div className="fixed right-[-32vw] top-1/2 hidden h-[760px] w-[760px] -translate-y-1/2 lg:block">
+      <div className="pointer-events-none fixed right-[-32vw] top-1/2 hidden h-[760px] w-[760px] -translate-y-1/2 lg:block">
         <div
           aria-hidden
           className="h-full w-full rotate-45 border border-dotted border-rule"
         />
         <a
-          href="/testing"
-          className="group absolute left-0 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-4 whitespace-nowrap"
-        >
+          
+  href="/testing"
+  className="group pointer-events-auto absolute left-0 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-4 whitespace-nowrap"
+>
           <span className="text-sm">TAKE TEST</span>
           <span className="relative inline-flex h-[30px] w-[30px] items-center justify-center">
             <span className="absolute inset-0 rotate-45 border border-solid border-ink transition-transform duration-300 group-hover:scale-110" />
