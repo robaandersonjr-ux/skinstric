@@ -12,8 +12,8 @@ export default function Home() {
       </div>
 
       {/* DESKTOP: left diamond + DISCOVER A.I. */}
-      <div className="fixed left-[-32vw] top-1/2 hidden h-[760px] w-[760px] -translate-y-1/2 lg:block">
-        <div
+{/* left */}
+<div className="pointer-events-none fixed left-[-60vw] top-1/2 z-20 hidden h-[760px] w-[760px] -translate-y-1/2 xl:left-[-32vw] lg:block">        <div
           aria-hidden
           className="h-full w-full rotate-45 border border-dotted border-rule"
         />
@@ -37,8 +37,8 @@ export default function Home() {
       </div>
 
       {/* DESKTOP: right diamond + TAKE TEST */}
-<div className="pointer-events-none fixed right-[-32vw] top-1/2 z-20 hidden h-[760px] w-[760px] -translate-y-1/2 lg:block">        
-<div
+{/* right */}
+<div className="pointer-events-none fixed right-[-60vw] top-1/2 z-20 hidden h-[760px] w-[760px] -translate-y-1/2 xl:right-[-32vw] lg:block"><div
           aria-hidden
           className="h-full w-full rotate-45 border border-dotted border-rule"
         />
