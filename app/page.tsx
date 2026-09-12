@@ -37,8 +37,8 @@ export default function Home() {
       </div>
 
       {/* DESKTOP: right diamond + TAKE TEST */}
-      <div className="pointer-events-none fixed right-[-32vw] top-1/2 hidden h-[760px] w-[760px] -translate-y-1/2 lg:block">
-        <div
+<div className="pointer-events-none fixed right-[-32vw] top-1/2 z-20 hidden h-[760px] w-[760px] -translate-y-1/2 lg:block">        
+<div
           aria-hidden
           className="h-full w-full rotate-45 border border-dotted border-rule"
         />
@@ -63,7 +63,7 @@ export default function Home() {
       </div>
 
       {/* Heading — both breakpoints */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
+      <div className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center text-center">
         <h1 className="text-[60px] font-normal leading-none tracking-tighter lg:text-[100px]">
           Sophisticated
           <br />
@@ -77,8 +77,8 @@ export default function Home() {
 
         <a
           href="/testing"
-          className="group mt-6 inline-flex items-center gap-4 whitespace-nowrap lg:hidden"
-        >
+  className="group pointer-events-auto mt-6 inline-flex items-center gap-4 whitespace-nowrap lg:hidden"
+>
           <span className="text-[12px] font-bold">ENTER EXPERIENCE</span>
           <span className="relative inline-flex h-[24px] w-[24px] items-center justify-center">
             <span className="absolute inset-0 rotate-45 border border-solid border-ink transition-transform duration-300 group-hover:scale-110" />

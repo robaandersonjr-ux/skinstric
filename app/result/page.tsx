@@ -49,14 +49,13 @@ export default function Result() {
       <DiamondStack />
 
       {/* Two choices, centered */}
-      <div className="relative z-10 flex h-full items-center justify-center gap-32">
-        {/* Camera — Phase 3 */}
+         <div className="pointer-events-none relative z-10 flex h-full items-center justify-center gap-32">        {/* Camera — Phase 3 */}
         <div className="relative">
           <button
             type="button"
             onClick={() => router.push("/camera")}
             aria-label="Allow A.I. to scan your face"
-            className="flex h-[136px] w-[136px] items-center justify-center rounded-full border border-ink transition-transform duration-300 hover:scale-105"
+            className="pointer-events-auto flex h-[136px] w-[136px] items-center justify-center rounded-full border border-ink transition-transform duration-300 hover:scale-105"
           >
             <svg viewBox="0 0 48 48" width="72" height="72" fill="currentColor">
               <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -82,7 +81,7 @@ export default function Result() {
             type="button"
             onClick={() => fileInputRef.current?.click()}
             aria-label="Allow A.I. to access gallery"
-            className="flex h-[136px] w-[136px] items-center justify-center rounded-full border border-ink transition-transform duration-300 hover:scale-105"
+            className="pointer-events-auto flex h-[136px] w-[136px] items-center justify-center rounded-full border border-ink transition-transform duration-300 hover:scale-105"
           >
             <svg viewBox="0 0 48 48" width="72" height="72" fill="currentColor">
               <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -111,7 +110,7 @@ export default function Result() {
       <button
         type="button"
         onClick={() => router.push("/testing")}
-        className="group absolute bottom-8 left-8 flex items-center gap-4"
+        className="group absolute bottom-8 left-8 z-20 flex items-center gap-4"
       >
         <span className="relative inline-flex h-[30px] w-[30px] items-center justify-center">
           <span className="absolute inset-0 rotate-45 border border-solid border-ink transition-transform duration-300 group-hover:scale-110" />

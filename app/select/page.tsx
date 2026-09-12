@@ -46,32 +46,24 @@ export default function Select() {
 
         {/* Four solid diamonds in a rotated 2x2 grid */}
         <div className="relative grid rotate-45 grid-cols-2 gap-2">
-          <button
-            type="button"
-            disabled={!ready}
-            onClick={() => router.push("/summary")}
-            className="flex h-[150px] w-[150px] items-center justify-center bg-[#E1E1E2] transition-colors hover:bg-[#D4D4D6] disabled:opacity-50"
-          >
-            <span className="-rotate-45 text-center text-sm font-semibold">
-              DEMOGRAPHICS
-            </span>
-          </button>
+  <button
+    type="button"
+    disabled={!ready}
+    onClick={() => router.push("/summary")}
+    className="flex h-[150px] w-[150px] items-center justify-center bg-[#E1E1E2] transition-colors hover:bg-[#D4D4D6] disabled:opacity-50"
+  >
+    <span className="-rotate-45 text-center text-sm font-semibold">DEMOGRAPHICS</span>
+  </button>
 
-          {(["SKIN TYPE DETAILS", "COSMETIC CONCERNS", "WEATHER"] as const).map(
-            (label, i) => (
-              <div
-                key={label}
-                className={`flex h-[150px] w-[150px] items-center justify-center bg-[#F3F3F4] ${
-                  i === 0 ? "" : i === 1 ? "-order-1" : ""
-                }`}
-              >
-                <span className="-rotate-45 text-center text-sm font-semibold">
-                  {label}
-                </span>
-              </div>
-            )
-          )}
-        </div>
+  {["SKIN TYPE DETAILS", "COSMETIC CONCERNS", "WEATHER"].map((label) => (
+    <div
+      key={label}
+      className="flex h-[150px] w-[150px] items-center justify-center bg-[#F3F3F4]"
+    >
+      <span className="-rotate-45 text-center text-sm font-semibold">{label}</span>
+    </div>
+  ))}
+</div>
       </div>
 
       {error && (

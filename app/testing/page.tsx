@@ -106,7 +106,7 @@ export default function Testing() {
 
         <DiamondStack />
 
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
+        <div className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center text-center">
           {step === "processing" ? (
             <>
               <p className="text-[16px]">Processing submission</p>
@@ -124,12 +124,12 @@ export default function Testing() {
           )}
         </div>
 
-        <div className="absolute bottom-8 left-8">
+        <div className="absolute bottom-8 left-8 z-20">
           <NavButton label="BACK" direction="left" onClick={handleBack} />
         </div>
 
-        {step === "thanks" && (
-          <div className="absolute bottom-8 right-8">
+                {step === "thanks" && (
+          <div className="absolute bottom-8 right-8 z-20">
             <NavButton
               label="PROCEED"
               direction="right"
@@ -158,7 +158,7 @@ export default function Testing() {
         <div className="absolute h-[350px] w-[350px] rotate-45 border border-dotted border-rule" />
       </div>
 
-      <div className="relative z-10 flex h-full flex-col items-center justify-center">
+      <div className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center">
         <p className="text-[12px] uppercase tracking-wide text-ink-muted">
           Click to type
         </p>
@@ -175,20 +175,22 @@ export default function Testing() {
           }}
           autoFocus
           placeholder={step === "name" ? "Introduce Yourself" : "Your City Name"}
-          className="mt-2 w-[400px] border-b border-ink bg-transparent pb-2 text-center text-[40px] font-normal tracking-tighter outline-none placeholder:text-ink/40"
+          className="pointer-events-auto mt-2 w-[400px] border-b border-ink bg-transparent pb-2 text-center text-[40px] font-normal tracking-tighter outline-none placeholder:text-ink/40"
         />
 
         {/* Fixed height keeps the layout from jumping when an error appears */}
         <p className="mt-3 h-5 text-[12px] text-red-600">{error ?? ""}</p>
       </div>
 
-      <div className="absolute bottom-8 left-8">
-        <NavButton label="BACK" direction="left" onClick={handleBack} />
-      </div>
+      <div className="absolute bottom-8 left-8 z-20">
+  <NavButton label="BACK" direction="left" onClick={handleBack} />
+</div>
 
-      <div className="absolute bottom-8 right-8">
-        <NavButton label="PROCEED" direction="right" onClick={handleProceed} />
-      </div>
+            {value.trim() !== "" && (
+        <div className="absolute bottom-8 right-8 z-20">
+          <NavButton label="PROCEED" direction="right" onClick={handleProceed} />
+        </div>
+      )}
     </main>
   );
 }
