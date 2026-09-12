@@ -28,8 +28,8 @@ export default function Select() {
         </p>
       </div>
 
-      <div className="relative flex h-[70%] items-center justify-center">
-        <div className="relative grid rotate-45 grid-cols-2 gap-2">
+            <div className="relative flex h-[70%] items-center justify-center">
+        <div className="relative grid rotate-45 grid-cols-2 gap-2 scale-[0.50] sm:scale-100">
           <button
             type="button"
             disabled={!ready}

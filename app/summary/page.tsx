@@ -97,7 +97,7 @@ export default function Summary() {
     category === "age" ? `${active.label} y.o.` : active.label;
 
   return (
-    <main className="mx-5 flex h-[calc(100vh-56px)] flex-col">
+    <main className="mx-5 flex h-[calc(100vh-56px)] flex-col overflow-y-auto">
       <div className="mb-6 text-start">
         <h2 className="mb-1 text-base font-semibold leading-[24px]">
           A.I. ANALYSIS
@@ -142,12 +142,14 @@ export default function Summary() {
         </div>
 
         {/* Center: label + ring */}
-        <div className="relative flex flex-col items-center justify-center bg-[#F3F3F4] p-4 md:h-[57vh] md:border-t">
-          <p className="absolute left-7 top-4 text-[40px]">{activeLabel}</p>
-          <div className="md:absolute md:bottom-2 md:right-5">
+              <div className="relative flex flex-col items-center justify-center bg-[#F3F3F4] p-4 md:h-[57vh] md:border-t">
+          <p className="mb-2 text-[24px] md:absolute md:left-7 md:top-4 md:mb-0 md:text-[40px]">
+            {activeLabel}
+          </p>
+          <div className="w-full max-w-[240px] md:absolute md:bottom-2 md:right-5 md:max-w-[384px]">
             <Ring percent={Number(active.percent)} />
           </div>
-          <p className="absolute bottom-[-15%] left-1/2 -translate-x-1/2 whitespace-nowrap text-sm text-rule">
+                    <p className="mt-4 text-center text-xs text-rule md:absolute md:bottom-[-15%] md:left-1/2 md:mt-0 md:-translate-x-1/2 md:whitespace-nowrap md:text-sm">
             If A.I. estimate is wrong, select the correct one.
           </p>
         </div>
