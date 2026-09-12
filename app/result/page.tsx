@@ -3,28 +3,61 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import DiamondStack from "@/components/DiamondStack";
+import { submitPhaseTwo, saveDemographics } from "@/lib/phaseTwo";
 
 export default function Result() {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async () => {
       const dataUrl = reader.result as string;
       setPreview(dataUrl);
-      // Hand the image to the analysis step via sessionStorage —
-      // data URLs are far too long for a query string.
       sessionStorage.setItem("skinstric:image", dataUrl);
-      router.push("/select");
+      setProcessing(true);
+      setError(null);
+
+      const started = Date.now();
+      const result = await submitPhaseTwo(dataUrl);
+
+      // Keep the loading state visible long enough to read.
+      const elapsed = Date.now() - started;
+      if (elapsed < 1200) {
+        await new Promise((r) => setTimeout(r, 1200 - elapsed));
+      }
+
+      if (result.ok) {
+        saveDemographics(result.data);
+        router.push("/select");
+      } else {
+        setProcessing(false);
+        setError(result.error);
+      }
     };
     reader.readAsDataURL(file);
   }
-
+    if (processing) {
+    return (
+      <main className="relative h-[calc(100vh-56px)] overflow-hidden">
+        <DiamondStack />
+        <div className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center">
+          <p className="text-sm uppercase">Preparing your analysis...</p>
+          <div className="mt-4 flex gap-2">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink [animation-delay:0ms]" />
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink [animation-delay:200ms]" />
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink [animation-delay:400ms]" />
+          </div>
+        </div>
+      </main>
+    );
+  }
   return (
     <main className="relative h-[calc(100vh-56px)] overflow-hidden">
       <p className="absolute left-8 top-8 text-[12px] font-semibold uppercase">
@@ -105,7 +138,11 @@ export default function Result() {
         onChange={handleFileChange}
         className="hidden"
       />
-
+            {error && (
+        <p className="absolute bottom-24 left-1/2 z-20 -translate-x-1/2 text-[12px] text-red-600">
+          {error}
+        </p>
+      )}
       {/* Back */}
       <button
         type="button"

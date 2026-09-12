@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { submitPhaseTwo, loadImage, saveDemographics } from "@/lib/phaseTwo";
+import { loadDemographics } from "@/lib/phaseTwo";
 
 export default function Select() {
   const router = useRouter();
@@ -10,20 +10,11 @@ export default function Select() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const image = loadImage();
-    if (!image) {
-      setError("No image found. Please upload one first.");
-      return;
+    if (loadDemographics()) {
+      setReady(true);
+    } else {
+      setError("No analysis found. Please upload an image first.");
     }
-
-    submitPhaseTwo(image).then((result) => {
-      if (result.ok) {
-        saveDemographics(result.data);
-        setReady(true);
-      } else {
-        setError(result.error);
-      }
-    });
   }, []);
 
   return (
@@ -38,32 +29,29 @@ export default function Select() {
       </div>
 
       <div className="relative flex h-[70%] items-center justify-center">
-        {/* Dotted outer diamond */}
-        <div
-          aria-hidden
-          className="absolute h-[480px] w-[480px] rotate-45 border border-dotted border-rule"
-        />
-
-        {/* Four solid diamonds in a rotated 2x2 grid */}
         <div className="relative grid rotate-45 grid-cols-2 gap-2">
-  <button
-    type="button"
-    disabled={!ready}
-    onClick={() => router.push("/summary")}
-    className="flex h-[150px] w-[150px] items-center justify-center bg-[#E1E1E2] transition-colors hover:bg-[#D4D4D6] disabled:opacity-50"
-  >
-    <span className="-rotate-45 text-center text-sm font-semibold">DEMOGRAPHICS</span>
-  </button>
+          <button
+            type="button"
+            disabled={!ready}
+            onClick={() => router.push("/summary")}
+            className="flex h-[150px] w-[150px] items-center justify-center bg-[#E1E1E2] transition-colors hover:bg-[#D4D4D6] disabled:opacity-50"
+          >
+            <span className="-rotate-45 text-center text-sm font-semibold">
+              DEMOGRAPHICS
+            </span>
+          </button>
 
-  {["SKIN TYPE DETAILS", "COSMETIC CONCERNS", "WEATHER"].map((label) => (
-    <div
-      key={label}
-      className="flex h-[150px] w-[150px] items-center justify-center bg-[#F3F3F4]"
-    >
-      <span className="-rotate-45 text-center text-sm font-semibold">{label}</span>
-    </div>
-  ))}
-</div>
+          {["SKIN TYPE DETAILS", "COSMETIC CONCERNS", "WEATHER"].map((label) => (
+            <div
+              key={label}
+              className="flex h-[150px] w-[150px] items-center justify-center bg-[#F3F3F4]"
+            >
+              <span className="-rotate-45 text-center text-sm font-semibold">
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {error && (
@@ -72,7 +60,7 @@ export default function Select() {
         </p>
       )}
 
-      <div className="absolute bottom-8 flex w-full justify-between px-8">
+      <div className="absolute bottom-8 z-20 flex w-full justify-between px-8">
         <button
           type="button"
           onClick={() => router.push("/result")}
